@@ -8,12 +8,22 @@ class Canvas
   
   def [](*pos)
     x, y = pos
+    
+    raise "You can't draw off the canvas." unless valid_pos?(x, y)
+    
     @canvas[y][x]
   end
 
   def []=(*pos, color)
     x, y = pos
+    
+    raise "You can't draw off the canvas." unless valid_pos?(x, y)
+    
     @canvas[y][x] = color
+  end
+  
+  def valid_pos?(x, y)
+    x.between?(0, @canvas.first.length - 1) && y.between?(0, @canvas.length - 1)
   end
   
   def draw_line(x1, y1, x2, y2)
