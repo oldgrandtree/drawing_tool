@@ -11,4 +11,8 @@ class Canvas
     end
     output << ("-" * (@canvas.first.length + 2))
   end
+  
+  def display
+    puts render
+  end
 end
