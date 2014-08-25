@@ -27,6 +27,14 @@ class Canvas
   end
   
   def draw_line(x1, y1, x2, y2)
+    unless valid_pos?(x1, y1) && valid_pos?(x2, y2)
+      raise "You can't draw off the canvas."
+    end
+    
+    unless x1 == x2 || y1 == y2
+      raise "Draw Line doesn't support diagonal lines (yet!)"
+    end
+  
     self
   end
   
@@ -43,6 +51,3 @@ class Canvas
     puts render
   end
 end
-
-c = Canvas.new(3,4)
-c.hey
