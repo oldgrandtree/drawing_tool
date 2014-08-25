@@ -116,11 +116,25 @@ class Canvas
   
   def process_command(command)
     parsed_command = command.split(" ")
+    
     case parsed_command[0]
     when "L"
       return "Bad command!" if parsed_command.length != 5
-      coordinates = parsed_command[1..5].map {|coord| coord.to_i - 1}
+      
+      coordinates = parsed_command[1..4].map {|coord| coord.to_i - 1}
       draw_line(*coordinates).render
+    when "R"
+      return "Bad command!" if parsed_command.length != 5
+      
+      coordinates = parsed_command[1..4].map {|coord| coord.to_i - 1}
+      draw_rect(*coordinates).render
+    when "B"
+      return "Bad command!" if parsed_command.length != 4
+      
+      # last argument must be a string, so we must avoid to_i
+      coordinates = parsed_command[1..2].map {|coord| coord.to_i - 1}.concat([
+        parsed_command[3]])
+      fill(*coordinates).render
     else
       "Bad command!"
     end

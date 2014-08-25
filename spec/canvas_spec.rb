@@ -145,7 +145,7 @@ describe Canvas do
     end
     
     it "processes a draw rectange command" do
-      expect(canvas.process_command("R 16 1 2 0 3")).to eq([
+      expect(canvas.process_command("R 16 1 20 3")).to eq([
         "----------------------", 
         "|               xxxxx|",
         "|               x   x|",
