@@ -24,4 +24,15 @@ describe Canvas do
       expect {Canvas.new(1, -3)}.to raise_error("invalid canvas size")
     end
   end
+  
+  describe "#draw_line" do
+    it "draws a horizontal line" do
+      # the user's coordinates will begin at origin (1, 1), but our code will refer to the origin as (0, 0)
+      rendered_canvas = blank_canvas
+      rendered_canvas[2] = ("x" * 6) + (" " * 14),
+      expect(canvas.draw_line(0, 1, 5, 1).render).to eq(rendered_canvas)
+    end
+    
+
+  end
 end
