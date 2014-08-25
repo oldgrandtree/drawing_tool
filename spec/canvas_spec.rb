@@ -3,6 +3,38 @@ require 'canvas'
 
 describe Canvas do
   subject(:canvas) {Canvas.new(20, 4)}
+  let(:horizontal_line_canvas) do
+    [
+      "----------------------", 
+      "|                    |",
+      "|xxxxxx              |",
+      "|                    |",
+      "|                    |",
+      "----------------------"
+    ]
+  end
+  
+  let(:rectangle_canvas) do
+    [
+      "----------------------", 
+      "|               xxxxx|",
+      "|               x   x|",
+      "|               xxxxx|",
+      "|                    |",
+      "----------------------"
+    ]
+  end
+  
+  let(:filled_in_canvas) do
+    [
+      "----------------------", 
+      "|oooooooooooooooxxxxx|",
+      "|xxxxxxooooooooox   x|",
+      "|     xoooooooooxxxxx|",
+      "|     xoooooooooooooo|",
+      "----------------------"
+    ]
+  end
   
   describe "#initialize" do
     it "initializes a canvas with the correct dimensions" do
@@ -25,14 +57,7 @@ describe Canvas do
   describe "#draw_line" do
     it "draws a horizontal line" do
       # the user's coordinates will begin at origin (1, 1), but our code will refer to the origin as (0, 0)
-      expect(canvas.draw_line(0, 1, 5, 1).render).to eq([
-        "----------------------", 
-        "|                    |",
-        "|xxxxxx              |",
-        "|                    |",
-        "|                    |",
-        "----------------------"
-      ])
+      expect(canvas.draw_line(0, 1, 5, 1).render).to eq(horizontal_line_canvas)
     end
     
     it "draws a vertical line" do
@@ -61,14 +86,7 @@ describe Canvas do
   
   describe "#draw_rect" do
     it "draws a rectange" do
-      expect(canvas.draw_rect(15, 0, 19, 2).render).to eq([
-        "----------------------", 
-        "|               xxxxx|",
-        "|               x   x|",
-        "|               xxxxx|",
-        "|                    |",
-        "----------------------"
-      ])
+      expect(canvas.draw_rect(15, 0, 19, 2).render).to eq(rectangle_canvas)      
     end
     
     it "doesn't allow drawing off the canvas" do
@@ -97,14 +115,7 @@ describe Canvas do
   
   describe "#fill" do
     it "fills the board" do
-      expect(drawn_canvas.fill(9, 2, "o").render).to eq([
-        "----------------------", 
-        "|oooooooooooooooxxxxx|",
-        "|xxxxxxooooooooox   x|",
-        "|     xoooooooooxxxxx|",
-        "|     xoooooooooooooo|",
-        "----------------------"
-      ])
+      expect(drawn_canvas.fill(9, 2, "o").render).to eq(filled_in_canvas)
     end
     
     it "doesn't allow drawing off the canvas" do
@@ -134,36 +145,15 @@ describe Canvas do
   
   describe "#process_command" do 
     it "processes a draw line command" do
-      expect(canvas.process_command("L 1 2 6 2")).to eq([
-        "----------------------", 
-        "|                    |",
-        "|xxxxxx              |",
-        "|                    |",
-        "|                    |",
-        "----------------------"
-      ])
+      expect(canvas.process_command("L 1 2 6 2")).to eq(horizontal_line_canvas)
     end
     
     it "processes a draw rectange command" do
-      expect(canvas.process_command("R 16 1 20 3")).to eq([
-        "----------------------", 
-        "|               xxxxx|",
-        "|               x   x|",
-        "|               xxxxx|",
-        "|                    |",
-        "----------------------"
-      ])
+      expect(canvas.process_command("R 16 1 20 3")).to eq(rectangle_canvas)
     end
     
     it "processes a fill command" do
-      expect(drawn_canvas.process_command("B 10 3 o")).to eq([
-        "----------------------", 
-        "|oooooooooooooooxxxxx|",
-        "|xxxxxxooooooooox   x|",
-        "|     xoooooooooxxxxx|",
-        "|     xoooooooooooooo|",
-        "----------------------"
-      ])
+      expect(drawn_canvas.process_command("B 10 3 o")).to eq(filled_in_canvas)
     end
     
     it "tells the user when he/she gives bad input" do
