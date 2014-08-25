@@ -48,7 +48,7 @@ describe Canvas do
     end
     
     it "raises error if line is not orthogonal (i.e. it is diagonal)" do
-      expect {canvas.draw_line(1, 2, 3, 40)}.to raise_error(
+      expect {canvas.draw_line(1, 2, 3, 3)}.to raise_error(
         "Draw Line doesn't support diagonal lines (yet!)"
       )
     end
