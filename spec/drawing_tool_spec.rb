@@ -89,4 +89,23 @@ describe Canvas do
       "----------------------"
     ])
   end
+  
+  describe "#fill" do
+    it "correctly fills board" do
+      expect(drawn_canvas.fill(9, 2, "o").render).to eq([
+        "----------------------", 
+        "|oooooooooooooooxxxxx|",
+        "|xxxxxxooooooooox   x|",
+        "|     xoooooooooxxxxx|",
+        "|     xoooooooooooooo|",
+        "----------------------"
+      ])
+    end
+    
+    it "doesn't allow drawing off the canvas" do
+      expect {canvas.fill(3, 40, "o")}.to raise_error(
+        "You can't draw off the canvas."
+      )
+    end
+  end
 end
