@@ -6,6 +6,16 @@ class Canvas
     @canvas = Array.new(y) { Array.new(x) }
   end
   
+  def [](*pos)
+    x, y = pos
+    @canvas[y][x]
+  end
+
+  def []=(*pos, color)
+    x, y = pos
+    @canvas[y][x] = color
+  end
+  
   def draw_line(x1, y1, x2, y2)
     self
   end
@@ -23,3 +33,6 @@ class Canvas
     puts render
   end
 end
+
+c = Canvas.new(3,4)
+c.hey
