@@ -1,5 +1,5 @@
 require 'rspec'
-require 'drawing_tool'
+require 'canvas'
 
 describe Canvas do
   subject(:canvas) {Canvas.new(20, 4)}
@@ -91,7 +91,7 @@ describe Canvas do
   end
   
   describe "#fill" do
-    it "correctly fills board" do
+    it "fills the board" do
       expect(drawn_canvas.fill(9, 2, "o").render).to eq([
         "----------------------", 
         "|oooooooooooooooxxxxx|",
