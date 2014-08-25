@@ -108,4 +108,22 @@ describe Canvas do
       )
     end
   end
+  
+  describe ".create_from_command" do
+    it "creates a canvas" do
+      expect(Canvas.create_from_command("C 3 4")
+                   .instance_variable_get("@canvas")
+      ).to eq(Array.new(4) { Array.new(3) })
+    end
+    
+    it "raises error on invalid input" do
+      expect {Canvas.create_from_command("C3 4")}.to raise_error(
+        "Invalid canvas."
+      )
+      
+      expect {Canvas.create_from_command("C 3 D")}.to raise_error(
+        "Invalid canvas size."
+      )
+    end
+  end
 end
