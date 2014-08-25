@@ -9,6 +9,13 @@ class Canvas
   end
   
   def self.create_from_command(command)
+    parsed_command = command.split(" ")
+    unless parsed_command[0] == "C" && parsed_command.length == 3
+      raise "Invalid canvas." 
+    end
+    
+    # If coordinates are not integers, they will be converted to 0 after to_i and #initialize will raise invalid size error.
+    self.new(parsed_command[1].to_i, parsed_command[2].to_i).display
   end
   
   def render
@@ -22,6 +29,7 @@ class Canvas
   
   def display
     puts render
+    return self
   end
   
   def [](*pos)
