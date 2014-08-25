@@ -72,4 +72,21 @@ describe Canvas do
       )
     end
   end
+  
+  let(:drawn_canvas) do 
+    canvas.draw_line(0, 1, 5, 1)
+          .draw_line(5, 2, 5, 3)
+          .draw_rect(15, 0, 19, 2)
+  end
+  
+  it "displays board correctly after multiple drawings" do
+    expect(drawn_canvas.render).to eq([
+      "----------------------", 
+      "|               xxxxx|",
+      "|xxxxxx         x   x|",
+      "|     x         xxxxx|",
+      "|     x              |",
+      "----------------------"
+    ])
+  end
 end
