@@ -20,8 +20,8 @@ describe Canvas do
     end
   
     it "raises error when invalid dimensions are given" do
-      expect {Canvas.new(0, 8)}.to raise_error("invalid canvas size")
-      expect {Canvas.new(1, -3)}.to raise_error("invalid canvas size")
+      expect {Canvas.new(0, 8)}.to raise_error("Invalid canvas size.")
+      expect {Canvas.new(1, -3)}.to raise_error("Invalid canvas size.")
     end
   end
   
@@ -41,6 +41,16 @@ describe Canvas do
       expect(canvas.draw_line(5, 2, 5, 3).render).to eq(rendered_canvas)
     end
     
+    it "raises error if line is drawn off the canvas" do
+      expect {canvas.draw_line(1, 2, 3, 40)}.to raise_error(
+        "You can't draw off the canvas."
+      )
+    end
     
+    it "raises error if line is not orthogonal (i.e. it is diagonal)" do
+      expect {canvas.draw_line(1, 2, 3, 40)}.to raise_error(
+        "Draw Line doesn't support diagonal lines (yet!)"
+      )
+    end
   end
 end

@@ -1,7 +1,7 @@
 class Canvas
   def initialize(x, y)  
     # this condition ensures @canvas.first is an array, avoiding an error in #valid_pos? if y was equal to 0
-    raise "invalid canvas size" unless [x,y].all? {|coord| coord > 0}
+    raise "Invalid canvas size." unless [x,y].all? {|coord| coord > 0}
     
     @canvas = Array.new(y) { Array.new(x) }
   end
