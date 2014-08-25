@@ -46,6 +46,26 @@ class Canvas
     self
   end
   
+  def draw_rect(x1, y1, x2, y2)
+    unless valid_pos?(x1, y1) && valid_pos?(x2, y2)
+      raise "You can't draw off the canvas."
+    end
+    
+    # draw horizontal lines
+    (x1..x2).each do |x| 
+      self[x, y1] = "x"
+      self[x, y2] = "x"
+    end
+    
+    # draw vertical lines
+    (y1..y2).each do |y| 
+      self[x1, y] = "x"
+      self[x2, y] = "x"
+    end
+        
+    self
+  end
+  
   def render
     output = []
     output << ("-" * (@canvas.first.length + 2))
