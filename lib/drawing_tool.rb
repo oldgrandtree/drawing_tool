@@ -6,6 +6,10 @@ class Canvas
     @canvas = Array.new(y) { Array.new(x) }
   end
   
+  def draw_line(x1, y1, x2, y2)
+    self
+  end
+  
   def render
     output = []
     output << ("-" * (@canvas.first.length + 2))
