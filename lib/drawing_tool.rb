@@ -34,7 +34,15 @@ class Canvas
     unless x1 == x2 || y1 == y2
       raise "Draw Line doesn't support diagonal lines (yet!)"
     end
-  
+    
+    if x1 != x2
+      # horizontal line
+      (x1..x2).each {|x| self[x, y1] = "x"}
+    else
+      # vertical line
+      (y1..y2).each {|y| self[x1, y] = "x"}
+    end
+    
     self
   end
   
