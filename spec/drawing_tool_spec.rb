@@ -53,4 +53,23 @@ describe Canvas do
       )
     end
   end
+  
+  describe "#draw_rect" do
+    it "draws a rectange" do
+      expect(canvas.draw_rect(15, 0, 19, 2).render).to eq([
+        "----------------------", 
+        "|               xxxxx|",
+        "|               x   x|",
+        "|               xxxxx|",
+        "|                    |",
+        "----------------------"
+      ])
+    end
+    
+    it "doesn't allow drawing off the canvas" do
+      expect {canvas.draw_rect(1, 2, 3, 40)}.to raise_error(
+        "You can't draw off the canvas."
+      )
+    end
+  end
 end
