@@ -33,6 +33,12 @@ describe Canvas do
       expect(canvas.draw_line(0, 1, 5, 1).render).to eq(rendered_canvas)
     end
     
-
+    it "draws a vertical line" do
+      rendered_canvas = blank_canvas
+      new_str = (" " * 5) + "x" + (" " * 14)
+      rendered_canvas[3] = new_str,
+      rendered_canvas[4] = new_str
+      expect(canvas.draw_line(5, 2, 5, 3).render).to eq(rendered_canvas)
+    end
   end
 end
