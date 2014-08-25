@@ -1,5 +1,3 @@
-require 'debugger'
-
 class Canvas
   DIRS = [[1, -1], [1, 0], [1, 1], [0, -1], [0, 1], [-1, -1], [-1, 0], [-1, 1]]
   
@@ -8,6 +6,9 @@ class Canvas
     raise "Invalid canvas size." unless [x,y].all? {|coord| coord > 0}
     
     @canvas = Array.new(y) { Array.new(x) }
+  end
+  
+  def self.create_from_command(command)
   end
   
   def render
@@ -103,5 +104,23 @@ class Canvas
     
     self
   end
+  
+  def proccess_command(command)
+  end
 end
 
+# create canvas
+begin
+  puts "enter command: "
+  command = gets.chomp
+  canvas = Canvas.create_from_command(command)
+rescue Exception => e
+  puts e.message
+  retry
+end
+
+until command == "Q"
+  puts "enter command: "
+  command = gets.chomp
+  canvas.proccess_command(command)
+end
