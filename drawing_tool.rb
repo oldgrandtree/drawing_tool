@@ -1,3 +1,5 @@
+load 'lib/canvas.rb'
+
 # create canvas
 begin
   puts "enter command: "
@@ -8,8 +10,10 @@ rescue Exception => e
   retry
 end
 
-until command == "Q"
+loop do
   puts "enter command: "
   command = gets.chomp
-  canvas.proccess_command(command)
+  
+  break if command == "Q"
+  puts canvas.proccess_command(command)
 end
