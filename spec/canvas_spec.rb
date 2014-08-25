@@ -134,41 +134,41 @@ describe Canvas do
   
   describe "#process_command" do 
     it "processes a draw line command" do
-      expect(blank_canvas.process_command("L 1 2 6 2").render).to eq(
+      expect(canvas.process_command("L 1 2 6 2")).to eq([
         "----------------------", 
         "|                    |",
         "|xxxxxx              |",
         "|                    |",
         "|                    |",
         "----------------------"
-      )
+      ])
     end
     
     it "processes a draw rectange command" do
-      expect(blank_canvas.process_command("R 16 1 2 0 3").render).to eq(
+      expect(canvas.process_command("R 16 1 2 0 3")).to eq([
         "----------------------", 
         "|               xxxxx|",
         "|               x   x|",
         "|               xxxxx|",
         "|                    |",
         "----------------------"
-      )
+      ])
     end
     
     it "processes a fill command" do
-      expect(drawn_canvas.process_command("B 10 3 o").render).to eq(
+      expect(drawn_canvas.process_command("B 10 3 o")).to eq([
         "----------------------", 
         "|oooooooooooooooxxxxx|",
         "|xxxxxxooooooooox   x|",
         "|     xoooooooooxxxxx|",
         "|     xoooooooooooooo|",
         "----------------------"
-      )
+      ])
     end
     
     it "tells the user when he/she gives bad input" do
-      expect {drawn_canvas.process_command("E 10 3 o")}.to eq("Bad command!")
-      expect {drawn_canvas.process_command("B 10")}.to eq("Bad command!")
+      expect(drawn_canvas.process_command("E 10 3 o")).to eq("Bad command!")
+      expect(drawn_canvas.process_command("B 10")).to eq("Bad command!")
     end
   end
 end

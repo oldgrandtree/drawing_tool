@@ -1,3 +1,4 @@
+require "debugger"
 class Canvas
   DIRS = [[1, -1], [1, 0], [1, 1], [0, -1], [0, 1], [-1, -1], [-1, 0], [-1, 1]]
   
@@ -113,6 +114,15 @@ class Canvas
     self
   end
   
-  def proccess_command(command)
+  def process_command(command)
+    parsed_command = command.split(" ")
+    case parsed_command[0]
+    when "L"
+      return "Bad command!" if parsed_command.length != 5
+      coordinates = parsed_command[1..5].map {|coord| coord.to_i - 1}
+      draw_line(*coordinates).render
+    else
+      "Bad command!"
+    end
   end
 end
