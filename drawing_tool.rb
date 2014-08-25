@@ -15,5 +15,5 @@ loop do
   command = gets.chomp
   
   break if command == "Q"
-  puts canvas.proccess_command(command)
+  puts canvas.process_command(command)
 end
